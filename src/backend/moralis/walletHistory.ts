@@ -21,10 +21,43 @@ interface WalletData {
   maxTimestamp: string;
 }
 
+export async function verifyAddressExists(address: string): Promise<Boolean> {
+  try {
+    if (!address) {
+      throw new Error('Wallet address is required.');
+    }
+    
+    const response = await Moralis.EvmApi.balance.getNativeBalance({
+      "address": address
+    });
+    
+  } catch (e) {
+    return false
+  }
+  return true
+  
+}
+
+export async function getAddressBalance(address: string): Promise<BigInt> {
+  try {
+    if (!address) {
+      throw new Error('Wallet address is required.');
+    }
+    
+    const response = await Moralis.EvmApi.balance.getNativeBalance({
+      "address": address
+    });
+
+    return BigInt(response.raw.balance)
+  } catch (e) {
+    console.error(e);
+  }
+  return BigInt(-1)
+}
+
 // Define the function to fetch wallet data
 export async function fetchWalletData(address: string): Promise<WalletData> {
   try {
-    // Validate the address
     if (!address) {
       throw new Error('Wallet address is required.');
     }
