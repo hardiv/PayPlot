@@ -11,15 +11,15 @@ export default function Home() {
 
 // const SUBSCAN_API_KEY = "503a383101ad4ae2937cbe6432a0582b";
 
-const walletAddress = '0x7206ee7BEB0489C688914cCef39f1aa7fa9a988F';
-  fetchWalletData(walletAddress).then(walletData => {
-    console.log(walletData);
-    console.log('Transaction History:', walletData.transactions);
-    console.log('Total Inflow:', walletData.totalInflow);
-    console.log('Total Outflow:', walletData.totalOutflow);
-    console.log('Min Timestamp:', walletData.minTimestamp);
-    console.log('Max Timestamp:', walletData.maxTimestamp);
-  });
+// const walletAddress = '0x7206ee7BEB0489C688914cCef39f1aa7fa9a988F';
+//   fetchWalletData(walletAddress).then(walletData => {
+//     console.log(walletData);
+//     console.log('Transaction History:', walletData.transactions);
+//     console.log('Total Inflow:', walletData.totalInflow);
+//     console.log('Total Outflow:', walletData.totalOutflow);
+//     console.log('Min Timestamp:', walletData.minTimestamp);
+//     console.log('Max Timestamp:', walletData.maxTimestamp);
+//   });
   
   
 

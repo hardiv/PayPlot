@@ -5,7 +5,7 @@ Moralis.start({
   apiKey: REACT_APP_MORALIS_API_KEY as string
 });
 
-interface Transaction {
+export interface Transaction {
   transactionId: string;
   fromAddress: string;
   toAddress: string | undefined;
@@ -13,7 +13,7 @@ interface Transaction {
   date: string;
 }
 
-interface WalletData {
+export interface WalletData {
   transactions: Transaction[];
   totalInflow: number;
   totalOutflow: number;
