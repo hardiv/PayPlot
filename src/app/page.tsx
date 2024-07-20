@@ -25,7 +25,9 @@ export default function Home() {
 
   return (
     <>
-      <head></head>
+      <head>
+        <title>Home | PayPlot</title>
+      </head>
       <body>
         <div className="min-h-screen w-full">
           <NavBar scrolled={scrolled} />
