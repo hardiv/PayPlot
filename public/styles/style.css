@@ -167,7 +167,7 @@ h2 {
 }
 
 .navbarScrolled {
-  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-background text-white border-gray-300 z-[100];
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-purple text-white border-gray-300 z-[100];
 }
 
 .black_btn {
