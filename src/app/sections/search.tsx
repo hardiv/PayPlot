@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from "react";
 import Info from "@components/info";
+import Graph from "@components/graph";
 import { WalletData } from "@/backend/moralis/walletHistory";
 
 export default function Search() {
@@ -101,7 +102,7 @@ export default function Search() {
                 isCollapsed ? "w-full" : "w-1/2"
               } h-full`}
             >
-              <p className="text-white">Right Panel Content</p>
+              <Graph walletID={wallet} walletData={walletDataDummy}/>
             </div>
           </div>
         </div>

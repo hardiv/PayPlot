@@ -12,7 +12,6 @@ export default function Info(props: InfoProps) {
   const walletID = props.walletID;
   // Generate a list of transactions for demonstration
   const transactions = walletData.transactions;
-  console.log("wallet ID:", walletID);
 
   return (
     <div className="mt-5 overflow-auto" style={{ height: 275 }}>
