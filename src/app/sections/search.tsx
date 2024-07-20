@@ -30,7 +30,7 @@ export default function Search() {
           Visualise your transactions in{" "}
           <span className="text-purple">seconds</span>
         </h1>
-        <form onSubmit={handleSubmit} className="w-full flex justify-center">
+        <form onSubmit={handleSubmit} className="w-full flex justify-center mt-5">
           <input
             type="text"
             placeholder="Enter a wallet address..."
