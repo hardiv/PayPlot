@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from "react";
 import Info from "@components/info";
 import Graph from "@components/graph";
-import { WalletData } from "@/backend/moralis/walletHistory";
+import { WalletData } from "@/backend/moralis/walletHistoryMoralis";
 
 export default function Search() {
   const [wallet, setWallet] = useState("0");

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { WalletData } from "@/backend/moralis/walletHistory";
+import { WalletData } from "@/backend/moralis/walletHistoryMoralis";
 
 interface GraphProps {
   walletID: string;
