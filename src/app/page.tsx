@@ -30,10 +30,10 @@ export default function Home() {
         <div className="min-h-screen w-full">
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
-            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-gray-800">
+            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
               <h1 className="text-6xl text-white">Section 1</h1>
             </section>
-            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-gray-800">
+            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
               <h1 className="text-6xl text-white">Section 2</h1>
             </section>
           </div>

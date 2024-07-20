@@ -21,7 +21,8 @@ const config: Config = {
       },
     },
     colors: {
-      'huscleblue': '#0ebcdb',
+      'purple': '#db00ff',
+      'background': '#222222',
       black: colors.black,
       white: colors.white,
       gray: colors.gray,

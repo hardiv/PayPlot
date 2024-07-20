@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import style from "@styles/style.css";
+import logo from "@images/logo.png";
 
 type NavbarProps = {
   scrolled: boolean;
@@ -12,7 +13,7 @@ const NavBar = ({ scrolled }: NavbarProps) => {
       <div className="mx-auto px-5 flex items-center h-full justify-items-start">
         <a href="/" title="Home">
           <Image
-            src={""}
+            src={logo}
             alt="Logo"
             width={160}
             height={40}

@@ -43,11 +43,11 @@ section {
 } */
 
 h1 {
-  @apply text-huscleblue font-zing font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  @apply text-purple font-zing font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
 }
 
 h2 {
-  @apply text-huscleblue font-zing font-extrabold text-xl sm:text-lg md:text-xl lg:text-3xl xl:text-4xl;
+  @apply text-purple font-zing font-extrabold text-xl sm:text-lg md:text-xl lg:text-3xl xl:text-4xl;
 }
 
 .modal-content {
@@ -156,23 +156,23 @@ h2 {
 
 /* Customize the scrollbar thumb with rounded edges */
 ::-webkit-scrollbar-thumb {
-  background: #0ebcdb; /* Change the color of the thumb */
+  background: #db00ff; /* Change the color of the thumb */
   border-radius: 5px; /* Add rounded edges */
 }
 
 /* Customize the scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0ecbec; /* Change the color on hover */
+  background: #db00ff; /* Change the color on hover */
 }
 
 /*Tailwind Styles*/
 
 .navbar {
-  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-black text-white border-gray-300 z-[100];
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-background text-white border-gray-300 z-[100];
 }
 
 .navbarScrolled {
-  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-huscleblue text-white border-gray-300 z-[100];
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-purple text-white border-gray-300 z-[100];
 }
 
 .black_btn {
