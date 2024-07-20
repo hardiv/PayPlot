@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
-import '@styles/style.css';
-import NavBar from '@/app/components/navbar';
+import "@styles/style.css";
+import NavBar from "@/app/components/navbar";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -16,25 +16,29 @@ export default function Home() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <head>
-
-      </head>
+    <>
+      <head></head>
       <body>
-        <div className="flex flex-col min-h-screen w-full">
+        <div className="min-h-screen w-full">
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
+            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-gray-800">
+              <h1 className="text-6xl text-white">Section 1</h1>
+            </section>
+            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-gray-800">
+              <h1 className="text-6xl text-white">Section 2</h1>
+            </section>
           </div>
         </div>
       </body>
-    </main>
+    </>
   );
 }
