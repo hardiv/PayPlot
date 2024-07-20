@@ -4,9 +4,13 @@ import { useEffect, useState } from "react";
 import "@styles/style.css";
 import NavBar from "@/app/components/navbar";
 import Search from "@/app/sections/search";
+import {fetchWalletData} from "../backend/moralis/walletHistory"
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+
+  const walletAddress = '0x63066bd226CDb299F791aebF79E943288eAc3D5e';
+  fetchWalletData(walletAddress);
 
   useEffect(() => {
     const handleScroll = () => {
