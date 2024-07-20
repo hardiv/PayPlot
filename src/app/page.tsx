@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 import "@styles/style.css";
 import NavBar from "@/app/components/navbar";
+import Search from "@/app/sections/search";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -33,11 +34,9 @@ export default function Home() {
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
             <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
-              <h1 className="text-6xl text-white">Section 1</h1>
+              <h1 className="text-5xl text-white items-center justify-center">Web3 Transaction Visualiser</h1>
             </section>
-            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
-              <h1 className="text-6xl text-white">Section 2</h1>
-            </section>
+            <Search/>
           </div>
         </div>
       </body>

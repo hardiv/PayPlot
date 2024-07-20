@@ -37,17 +37,12 @@ section {
   @apply text-white italic font-extrabold whitespace-pre-line sm:text-lg md:text-sm lg:text-lg xl:text-lg;
 }
 
-/* @font-face {
-  font-family: "Zing";
-  src: url("../assets/fonts/zing.rust-demo-base.otf");
-} */
-
 h1 {
-  @apply text-purple font-zing font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+  @apply text-purple font-bakbak font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
 }
 
 h2 {
-  @apply text-purple font-zing font-extrabold text-xl sm:text-lg md:text-xl lg:text-3xl xl:text-4xl;
+  @apply text-purple font-bakbak font-extrabold text-xl sm:text-lg md:text-xl lg:text-3xl xl:text-4xl;
 }
 
 .modal-content {
@@ -172,7 +167,7 @@ h2 {
 }
 
 .navbarScrolled {
-  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-purple text-white border-gray-300 z-[100];
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-background text-white border-gray-300 z-[100];
 }
 
 .black_btn {

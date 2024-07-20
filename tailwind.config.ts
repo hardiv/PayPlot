@@ -12,7 +12,7 @@ const config: Config = {
       fontFamily: {
         satoshi: ["Satoshi", "sans-serif"],
         inter: ["Inter", "sans-serif"],
-        zing: ["Zing", "sans-serif"],
+        bakbak: ['"Bakbak One"', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
