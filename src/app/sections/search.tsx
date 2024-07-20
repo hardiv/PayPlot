@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from "react";
 import Info from "@components/info";
+import { WalletData } from "@/backend/moralis/walletHistory";
 
 export default function Search() {
   const [wallet, setWallet] = useState("0");
@@ -28,6 +29,16 @@ export default function Search() {
   const toggleCollapse = () => {
     setIsCollapsed((prevState) => !prevState);
   };
+
+  const walletDataDummy : WalletData = {
+    transactions: [],
+    totalInflow: 5,
+    totalOutflow: 3,
+    minTimestamp: '',
+    maxTimestamp: ''
+  }
+
+  // console.log("in search.tsx")
 
   return (
     <section className="flex flex-col items-center w-full h-huscle-screen bg-background">
@@ -82,7 +93,7 @@ export default function Search() {
               {isCollapsed ? (
                 <></>
               ) : (
-                <Info/>
+                <Info walletID={wallet} walletData={walletDataDummy}/>
               )}
             </div>
             <div
