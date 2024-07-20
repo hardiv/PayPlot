@@ -14,7 +14,7 @@ export default function Home() {
 
   const walletAddress = '0x71C7656EC7ab88b098defB751B7401B5f6d8976F';
   fetchWalletData(walletAddress).then(walletData => {
-    console.log('Transaction History:', walletData.transactions);
+    // console.log('Transaction History:', walletData.transactions);
     console.log('Total Inflow:', walletData.totalInflow);
     console.log('Total Outflow:', walletData.totalOutflow);
     console.log('Min Timestamp:', walletData.minTimestamp);
@@ -48,10 +48,10 @@ export default function Home() {
         <div className="min-h-screen w-full">
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
-            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
-              <h1 className="text-5xl text-white items-center justify-center">Web3 Transaction Visualiser</h1>
-            </section>
             <Search/>
+            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
+              <h1 className="text-5xl text-white items-center justify-center">Made by Hardiv & Ansh</h1>
+            </section>
           </div>
         </div>
       </body>
