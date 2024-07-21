@@ -82,7 +82,7 @@ export default function Credibility({
           <p className="mt-10 text-white text-center">
             {entered
               ? "Invalid Wallet ID. Try again."
-              : "Enter a wallet ID to get started."}
+              : "Enter a wallet ID on the page above!."}
           </p>
         )}
       </div>

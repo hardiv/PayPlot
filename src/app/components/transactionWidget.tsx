@@ -32,12 +32,16 @@ function TransactionWidget (props: TransactionProps) {
   const transaction = props.transaction;
   
   return (
-    <div className="bg-gray-600 mb-2 mr-2 rounded-md p-4">
-      <p className="text-white mb-1">ID : {transaction.transactionId}</p>
+    <div
+      className="mb-2 mr-2 rounded-md p-4 bg-opacity-85 bg-purple"
+      
+    >
+      <p className="text-white mb-1">ID : {transaction.transactionId.slice(0,45)+"..."}</p>
       <p className="text-xs">
         Transferred {transaction.amount} from {transaction.fromAddress.slice(0,5)} to {transaction.toAddress ? transaction.toAddress.slice(0,5) : null} on {formatDate(transaction.date)}
       </p>
     </div>
+
   );
 };
 
