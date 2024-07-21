@@ -54,7 +54,7 @@ export default function Search() {
     };
 
     fetchData();
-  }, [wallet, valid]); // Dependency array: fetch data when wallet or valid changes
+  }, [valid]); // Dependency array: fetch data when wallet or valid changes
 
   return (
     <section className="flex flex-col items-center w-full h-huscle-screen bg-background">
