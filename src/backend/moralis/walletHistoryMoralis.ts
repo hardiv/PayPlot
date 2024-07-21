@@ -137,5 +137,5 @@ export async function fetchWalletData(address: string): Promise<WalletData> {
 
 
 // // Example usage
-// const walletAddress = '0xd8da6bf26964af9d7eed9e03e53415d37aa96045'; // Replace with actual address
+// const walletAddress = '0xeB5b7eE01F26B9adC088Ea2e3F66940e27414C92'; // Moonbeam address
 // fetchWalletData(walletAddress);

@@ -49,7 +49,6 @@ export async function verifyAddressExists(accountAddress: string) {
 
         // Make the API request
         const response = await axios(config);
-        console.log(response)
 
         // Check if the response is successful
         if (response.data.code === 0) {
@@ -57,7 +56,6 @@ export async function verifyAddressExists(accountAddress: string) {
 
             // Determine if the account is valid based on the response
             // Assuming that if `address` is returned, the account is valid
-            console.log(accountData.address)
             if (accountData.address) {
                 return true;
             } else {

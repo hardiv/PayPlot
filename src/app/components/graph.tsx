@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { WalletData } from "@/backend/moralis/walletHistoryMoralis";
+import { WalletData, Transaction } from "@/backend/walletHistorySubscan";
 import { DataSet, Network, Data, Node, Edge } from "vis-network/standalone";
 
 interface GraphProps {
@@ -12,18 +12,42 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
   const [selectedNodeId, setSelectedNodeId] = useState<number | null>(null);
   const [networkInstance, setNetworkInstance] = useState<Network | null>(null);
 
+  const buildNodesAndEdges = (transactions: Transaction[]) => {
+    const nodesMap = new Map<string, number>();
+    const nodesData: Node[] = [];
+    const edgesData: Edge[] = [];
+  
+    let currentId = 0;
+  
+    transactions.forEach((transaction) => {
+      const { fromAddress, toAddress } = transaction;
+  
+      if (!nodesMap.has(fromAddress)) {
+        nodesMap.set(fromAddress, currentId);
+        nodesData.push({ id: currentId, label: fromAddress.slice(0,5), color: "#3f3f3f" });
+        currentId++;
+      }
+
+      if (toAddress) {
+        if (!nodesMap.has(toAddress)) {
+          nodesMap.set(toAddress, currentId);
+          nodesData.push({ id: currentId, label: toAddress.slice(0,5), color: "#3f3f3f" });
+          currentId++;
+        }
+        edgesData.push({
+          from: nodesMap.get(fromAddress)!,
+          to: nodesMap.get(toAddress)!,
+        });
+      }
+    });
+
+    return { nodesData, edgesData };
+  };
+
   useEffect(() => {
     if (networkRef.current) {
-      // Define nodes
-      const nodesData: Node[] = [
-        { id: 1, label: `Node 0`, color: "#3f3f3f" },
-        { id: 2, label: `Node 1`, color: "#3f3f3f" },
-      ];
-
-      // Define edges
-      const edgesData: Edge[] = [
-        { from: 1, to: 2 },
-      ];
+      // Get nodes and edges
+      const { nodesData, edgesData } = buildNodesAndEdges(walletData.transactions);
 
       // Create DataSet instances
       const nodes = new DataSet(nodesData);
@@ -31,8 +55,8 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
 
       // Network data
       const data: Data = {
-        nodes: nodes, // Pass the DataSet directly
-        edges: edges, // Pass the DataSet directly
+        nodes: nodes,
+        edges: edges,
       };
 
       // Network options

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, FormEvent } from "react";
 import Info from "@components/info";
 import Graph from "@components/graph";
-import { fetchWalletData, WalletData } from "@/backend/walletHistorySubscan";
+import { verifyAddressExists, fetchWalletData, WalletData } from "@/backend/walletHistorySubscan";
 
 export default function Search() {
   const [wallet, setWallet] = useState("0");
@@ -23,7 +23,9 @@ export default function Search() {
     event.preventDefault();
     setSubmittedValue(inputValue);
     setEntered(true);
-    setValid(inputValue === "valid"); // Replace this with your actual validation logic
+    verifyAddressExists(inputValue).then(exists =>
+      setValid(exists)
+    )
     setWallet(inputValue);
   };
 
