@@ -99,17 +99,16 @@ export default function Search({ setWalletID, setEntered, setValid, entered, val
                 </button>
                 <div className="flex w-full h-full mt-2">
                   <div
-                    className={`transition-all duration-300 ease-in-out ${
+                    className={`transition-all duration-300 ease-in-out h-full ${
                       isCollapsed ? "w-0 overflow-hidden" : "w-1/2 pl-5"
-                    } bg-background h-full`}
-                    style={{ whiteSpace: "nowrap" }}
+                    } bg-background`}
                   >
                     {!isCollapsed && walletData && (
                       <Info walletID={wallet} walletData={walletData} />
                     )}
                   </div>
                   <div
-                    className={`flex-1 bg-background transition-all duration-300 ease-in-out h-full ${
+                    className={`bg-background transition-all duration-300 ease-in-out h-full ${
                       isCollapsed ? "w-full" : "w-1/2"
                     }`}
                   >
