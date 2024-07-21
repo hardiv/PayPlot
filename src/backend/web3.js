@@ -142,7 +142,7 @@ let contract;
 export async function init() {
   // Connect to MetaMask
   if (window.ethereum) {
-    provider = new ethers.BrowserProvider.Web3Provider(window.ethereum);
+    provider = new ethers.BrowserProvider(window.ethereum);
     await provider.send("eth_requestAccounts", []); // Request accounts
     const signer = provider.getSigner();
     contract = new ethers.Contract(contractAddress, contractABI, signer);
