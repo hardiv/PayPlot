@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SUBSCAN_BALANCE_HISTORY_API_URL = 'https://moonbeam.api.subscan.io/api/scan/account/balance_history';
+const SUBSCAN_SEARCH_API_URL = 'https://moonbeam.api.subscan.io/api/v2/scan/search';
 const SUBSCAN_TRANSFERS_API_URL = 'https://moonbeam.api.subscan.io/api/v2/scan/transfers';
 const SUBSCAN_API_KEY = '503a383101ad4ae2937cbe6432a0582b'; 
 
@@ -29,78 +29,93 @@ interface Transfer {
 }
 
 // Function to verify if an address exists
-export async function verifyAddressExists(address: string): Promise<boolean> {
-  try {
-    if (!address) {
-      throw new Error('Wallet address is required.');
+export async function verifyAddressExists(accountAddress: string) {
+    try {
+        // Define request payload
+        const data = JSON.stringify({
+            "key": accountAddress
+        });
+
+        // Set up the configuration for the API request
+        const config = {
+            method: 'post',
+            url: SUBSCAN_SEARCH_API_URL,
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${SUBSCAN_API_KEY}`
+            },
+            data: data
+        };
+
+        // Make the API request
+        const response = await axios(config);
+        console.log(response)
+
+        // Check if the response is successful
+        if (response.data.code === 0) {
+            const accountData = response.data.data.account;
+
+            // Determine if the account is valid based on the response
+            // Assuming that if `address` is returned, the account is valid
+            console.log(accountData.address)
+            if (accountData.address) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            console.error('Error in API response:', response.data.code, " msg: \n" , response.data.message);
+            return false;
+        }
+    } catch (error) {
+        console.error('Error during API request:', error);
+        return false;
     }
-
-    const requestBody = JSON.stringify({
-      address: address,
-    });
-
-    const config = {
-      method: 'post',
-      url: SUBSCAN_BALANCE_HISTORY_API_URL,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SUBSCAN_API_KEY}`
-      },
-      data: requestBody
-    };
-
-    const response = await axios(config);
-
-    if (response.status === 200 && response.data.code === 0) {
-      const { data } = response.data;
-      console.log(response)
-      return data && data.history && data.history.length > 0;
-    } else {
-      return false;
-    }
-  } catch (error) {
-    console.error('Error verifying address:', (error as Error).message);
-    return false;
-  }
 }
 
 // Function to get the balance of an address
-export async function getAddressBalance(address: string): Promise<BigInt> {
+export async function getAddressBalance(address: string): Promise<number> {
   try {
-    if (!address) {
-      throw new Error('Wallet address is required.');
-    }
+      // Define request payload
+      const data = JSON.stringify({
+          "key": address
+      });
 
-    const requestBody = JSON.stringify({
-      address: address,
-      block_range: '',
-      end: '',
-      recent_block: 10000,
-      start: ''
-    });
+      // Set up the configuration for the API request
+      const config = {
+          method: 'post',
+          url: SUBSCAN_SEARCH_API_URL,
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${SUBSCAN_API_KEY}`
+          },
+          data: data
+      };
 
-    const config = {
-      method: 'post',
-      url: SUBSCAN_BALANCE_HISTORY_API_URL,
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SUBSCAN_API_KEY}`
-      },
-      data: requestBody
-    };
+      // Make the API request
+      const response = await axios(config);
 
-    const response = await axios(config);
+      // Check if the response is successful
+      if (response.data.code === 0) {
+          const accountData = response.data.data.account;
 
-    if (response.status === 200 && response.data.code === 0) {
-      // Assuming balance is in the response under data.history (adapt as necessary)
-      const balance = response.data.data.history.reduce((acc: number, entry: any) => acc + entry.amount, 0);
-      return BigInt(balance);
-    } else {
-      return BigInt(-1);
-    }
+          // Check if accountData is valid and contains balance
+          if (accountData && accountData.balance) {
+              // Return the balance as BigInt
+              return accountData.balance; // Adjust if necessary
+          } else {
+              // Address not found or balance not available
+              return -1;
+          }
+      } else {
+          // API responded with an error
+          console.error('Error in API response:', response.data.code, " msg: \n" , response.data.message);
+          return -1;
+      }
   } catch (error) {
-    console.error('Error fetching address balance:', (error as Error).message);
-    return BigInt(-1);
+      // Handle errors (could be network issues or unexpected problems)
+      console.error('Error getting address balance:', error);
+      return -1;
   }
 }
 
