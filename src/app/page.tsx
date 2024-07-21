@@ -5,6 +5,7 @@ import "@styles/style.css";
 import NavBar from "@/app/components/navbar";
 import Search from "@/app/sections/search";
 import { fetchWalletData, getAddressBalance, verifyAddressExists } from "@/backend/walletHistorySubscan";
+import Credibility from "./sections/credibility";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,11 +38,7 @@ export default function Home() {
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
             <Search/>
-            <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
-              <p className="text-3xl text-white items-center justify-center">What do you think of this wallet? (ID: TODO put ID here)</p>
-              <p>Reliable</p>
-              <p>not relaible</p>
-            </section>
+            <Credibility/>
           </div>
         </div>
       </body>
