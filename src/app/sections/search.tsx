@@ -5,22 +5,24 @@ import { fetchWalletData, WalletData } from "@/backend/walletHistorySubscan";
 
 interface SearchProps {
   setWalletID: (walletID: string) => void;
+  setEntered: (entered: boolean) => void;
+  setValid: (valid: boolean) => void;
+  entered: boolean;
+  valid: boolean;
 }
 
-export default function Search({ setWalletID }: SearchProps) {
+export default function Search({ setWalletID, setEntered, setValid, entered, valid }: SearchProps) {
   const [wallet, setWallet] = useState("0");
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
-  const [entered, setEntered] = useState(false);
-  const [valid, setValid] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const walletDataDummy : WalletData = {
+  const walletDataDummy: WalletData = {
     transactions: [],
     totalInflow: 5,
     totalOutflow: 3,
     minTimestamp: '',
     maxTimestamp: ''
-  }
+  };
   const [walletData, setWalletData] = useState<WalletData>(walletDataDummy);
 
   const handleSubmit = async (event: FormEvent) => {
@@ -65,7 +67,7 @@ export default function Search({ setWalletID }: SearchProps) {
     <section className="flex flex-col items-center w-full h-huscle-screen bg-background">
       <div className="flex w-full flex-col items-center flex-[2]">
         <h1 className="text-4xl text-white mt-10 font-bakbak">
-          Visualise your transactions in{" "}
+          Visualise transactions in{" "}
           <span className="text-purple">seconds</span>
         </h1>
         <form
