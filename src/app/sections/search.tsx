@@ -1,7 +1,7 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import Info from "@components/info";
 import Graph from "@components/graph";
-import { WalletData } from "@/backend/moralis/walletHistoryMoralis";
+import { fetchWalletData, WalletData } from "@/backend/walletHistorySubscan";
 
 export default function Search() {
   const [wallet, setWallet] = useState("0");
@@ -10,12 +10,20 @@ export default function Search() {
   const [entered, setEntered] = useState(false);
   const [valid, setValid] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const walletDataDummy : WalletData = {
+    transactions: [],
+    totalInflow: 5,
+    totalOutflow: 3,
+    minTimestamp: '',
+    maxTimestamp: ''
+  }
+  const [walletData, setWalletData] = useState<WalletData>(walletDataDummy);
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
     setSubmittedValue(inputValue);
     setEntered(true);
-    setValid(inputValue === "valid");
+    setValid(inputValue === "valid"); // Replace this with your actual validation logic
     setWallet(inputValue);
   };
 
@@ -31,15 +39,22 @@ export default function Search() {
     setIsCollapsed((prevState) => !prevState);
   };
 
-  const walletDataDummy : WalletData = {
-    transactions: [],
-    totalInflow: 5,
-    totalOutflow: 3,
-    minTimestamp: '',
-    maxTimestamp: ''
-  }
+  useEffect(() => {
+    // Fetch wallet data whenever wallet address changes
+    const fetchData = async () => {
+      if (wallet && valid) {
+        try {
+          const data = await fetchWalletData(wallet);
+          setWalletData(data);
+        } catch (error) {
+          console.error('Error fetching wallet data:', error);
+          setWalletData(walletDataDummy); // Handle error state
+        }
+      }
+    };
 
-  // console.log("in search.tsx")
+    fetchData();
+  }, [wallet, valid]); // Dependency array: fetch data when wallet or valid changes
 
   return (
     <section className="flex flex-col items-center w-full h-huscle-screen bg-background">
@@ -64,9 +79,38 @@ export default function Search() {
       <div className="flex flex-col items-center w-full flex-[8]">
         {entered ? (
           valid ? (
-            <p className="text-white text-center pt-5">
-              Displaying Data for Wallet ID: {wallet}
-            </p>
+            <>
+              <p className="text-white text-center pt-5">
+                Displaying Data for Wallet ID: {wallet}
+              </p>
+              <div className="flex flex-col w-full mt-5 h-full">
+                <button
+                  onClick={toggleCollapse}
+                  className="p-2 bg-blue-500 text-white rounded-md"
+                >
+                  {isCollapsed ? "Show Details" : "Hide Details"}
+                </button>
+                <div className="flex w-full h-full mt-2">
+                  <div
+                    className={`transition-all duration-300 ease-in-out ${
+                      isCollapsed ? "w-0 overflow-hidden" : "w-1/2 pl-5"
+                    } bg-background h-full`}
+                    style={{ whiteSpace: "nowrap" }}
+                  >
+                    {!isCollapsed && walletData && (
+                      <Info walletID={wallet} walletData={walletData} />
+                    )}
+                  </div>
+                  <div
+                    className={`flex-1 bg-background transition-all duration-300 ease-in-out h-full ${
+                      isCollapsed ? "w-full" : "w-1/2"
+                    }`}
+                  >
+                    <Graph walletID={wallet} walletData={walletData} />
+                  </div>
+                </div>
+              </div>
+            </>
           ) : (
             <p className="text-white text-center pt-5">
               Invalid Wallet ID. Try again.
@@ -77,35 +121,6 @@ export default function Search() {
             Type a wallet ID above and hit enter!
           </p>
         )}
-        <div className="flex flex-col w-full mt-5 h-full">
-          <button
-            onClick={toggleCollapse}
-            className="p-2 bg-blue-500 text-white rounded-md"
-          >
-            {isCollapsed ? "Show Details" : "Hide Details"}
-          </button>
-          <div className="flex w-full h-full mt-2">
-            <div
-              className={`transition-all duration-300 ease-in-out ${
-                isCollapsed ? "w-0 overflow-hidden" : "w-1/2 pl-5"
-              } bg-background h-full`}
-              style={{ whiteSpace: "nowrap" }}
-            >
-              {isCollapsed ? (
-                <></>
-              ) : (
-                <Info walletID={wallet} walletData={walletDataDummy}/>
-              )}
-            </div>
-            <div
-              className={`flex-1 bg-background transition-all duration-300 ease-in-out h-full ${
-                isCollapsed ? "w-full" : "w-1/2"
-              }`}
-            >
-              <Graph walletID={wallet} walletData={walletDataDummy}/>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );
