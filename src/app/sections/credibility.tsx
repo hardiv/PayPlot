@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { getWalletInfo, upvoteWallet, downvoteWallet } from "@/backend/web3";
 
 interface CredibilityProps {
   walletID: string;
@@ -11,12 +12,35 @@ export default function Credibility({
   entered,
   valid,
 }: CredibilityProps) {
+  const [voted, setVoted] = useState(false);
+  const [upvotes, setUpvotes] = useState(0);
+  const [downvotes, setDownvotes] = useState(0);
+  const [credibility, setCredibility] = useState(0);
+
+  function updateVotes() {
+    getWalletInfo(walletID).then((info) => {
+      if (info) {
+        setUpvotes(info.upvotes);
+        setDownvotes(info.downvotes);
+        setCredibility(info.credibility);
+      }
+    });
+  }
+
+  updateVotes();
+
   const handleUpvote = () => {
+    setVoted(true);
+    upvoteWallet(walletID);
     console.log(`Upvoted wallet ID: ${walletID}`);
+    updateVotes();
   };
 
   const handleDownvote = () => {
+    setVoted(true);
+    downvoteWallet(walletID);
     console.log(`Downvoted wallet ID: ${walletID}`);
+    updateVotes();
   };
 
   return (
@@ -29,24 +53,30 @@ export default function Credibility({
           <>
             <p className="mt-10">Wallet ID: {walletID}</p>
             <p className="mt-10 text-3xl">
-              Credibility Score: {walletID} (Poor)
+              Credibility Score: {credibility}
             </p>
-            <p className="mt-10">Upvotes: {walletID}</p>
-            <p className="mt-10">Downvotes: {walletID}</p>
-            <div className="mt-10 flex space-x-4">
-              <button
-                onClick={handleUpvote}
-                className="p-2 bg-[#abbb35] text-white rounded-md"
-              >
-                Upvote
-              </button>
-              <button
-                onClick={handleDownvote}
-                className="p-2 bg-[#ff2060] text-white rounded-md"
-              >
-                Downvote
-              </button>
-            </div>
+            <p className="mt-10">Upvotes: {upvotes}</p>
+            <p className="mt-10">Downvotes: {downvotes}</p>
+            {!voted ? (
+              <div className="mt-10 flex space-x-4">
+                <button
+                  onClick={handleUpvote}
+                  className="p-2 bg-[#abbb35] text-white rounded-md"
+                >
+                  Upvote
+                </button>
+                <button
+                  onClick={handleDownvote}
+                  className="p-2 bg-[#ff2060] text-white rounded-md"
+                >
+                  Downvote
+                </button>
+              </div>
+            ) : (
+              <p className="mt-10 text-white text-center">
+                Your vote has been cast.
+              </p>
+            )}
           </>
         ) : (
           <p className="mt-10 text-white text-center">
