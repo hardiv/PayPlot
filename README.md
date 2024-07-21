@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cross-Chain Transaction Visualization and Analysis
+
+Welcome to the PayPlot. This platform is designed to track and visualize blockchain transactions across multiple networks, enhancing transparency and preventing scams through innovative blockchain technology.
+
+## Overview
+
+This project leverages the Polkadot network, Moonbeam parachain, and Solidity smart contracts to build a unified system for monitoring and visualizing transactions across different blockchains. By integrating these technologies, we aim to create a seamless experience for users to track transactions, identify potential scams, and visualize data effectively.
+
+## Key Features
+
+- **Multi-Chain Tracking**: Monitor and analyze transactions across various blockchains using Polkadot’s interoperability features.
+- **Advanced Visualization**: Use interactive graphs to visualize transaction flows and relationships between addresses.
+- **Smart Contract Integration**: Deploy and interact with smart contracts on Moonbeam to manage and verify transactions.
+- **User-Driven Credibility Scoring**: A unique smart contract allows users to vote and provide credibility scores for wallet addresses, enhancing transparency and trustworthiness in the ecosystem.
+- **Enhanced Security**: Implement features to detect and prevent fraudulent activities using data from Subscan and other sources.
+- **Data Analysis**: Utilize Ethers.js to interact with blockchain data and provide detailed insights.
+
+## Technologies Used
+
+- **Polkadot Network**: Provides the multi-chain framework to enable interoperability between different blockchains.
+- **Moonbeam Parachain**: Offers Ethereum compatibility, allowing for seamless integration with existing Ethereum-based tools and contracts.
+- **Solidity**: Used for writing and deploying smart contracts on Moonbeam.
+- **Subscan API**: Provides transaction data and analytics from the Polkadot network.
+- **Ethers.js**: Facilitates interaction with blockchain data and smart contracts.
+
+## Smart Contract for Credibility Voting
+
+We have implemented a smart contract on Moonbeam that allows users to:
+
+- **Vote on Wallet Addresses**: Users can cast votes to express their trust or concerns about specific wallet addresses.
+- **Provide Credibility Scores**: The smart contract aggregates votes to calculate a credibility score for each wallet address, which is visible to all users.
+- **Query and Display Scores**: Retrieve and display credibility scores in the PayPlot application to assist in decision-making and enhance transparency.
+
+## Future Goals
+
+Our vision is to expand this platform to connect more blockchains, offering a unified interface for tracking and visualizing transactions across various networks. By enhancing the interoperability and visualization capabilities, and introducing user-driven credibility scoring, we aim to improve transparency, prevent scams, and create a more integrated decentralized ecosystem.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js and npm installed
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/hardiv/payplot.git
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Navigate to the project directory:
+   ```bash
+   cd your-repository
+   ```
 
-## Learn More
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+### Running the Project
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Start the development server:
+   ```bash
+   npm start
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Open your browser and navigate to `http://localhost:3000` to see the application in action.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+---
