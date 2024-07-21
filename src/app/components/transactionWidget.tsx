@@ -34,7 +34,7 @@ function TransactionWidget (props: TransactionProps) {
   return (
     <div className="bg-gray-600 mb-2 mr-2 rounded-md p-4">
       <p className="text-white mb-1">ID : {transaction.transactionId}</p>
-      <p className="">
+      <p className="text-xs">
         Transferred {transaction.amount} from {transaction.fromAddress.slice(0,5)} to {transaction.toAddress ? transaction.toAddress.slice(0,5) : null} on {formatDate(transaction.date)}
       </p>
     </div>
