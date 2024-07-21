@@ -127,7 +127,7 @@ export async function fetchWalletData(address: string): Promise<WalletData> {
     const requestBody = JSON.stringify({
       address: address,
       row: 100,
-      order: 'asc'
+      order: 'desc'
     });
 
     const config = {
