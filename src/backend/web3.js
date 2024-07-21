@@ -240,5 +240,5 @@ export async function getCredibility(upvotes, downvotes, userAddress) {
   // Assuming a maximum credibility score for normalization
   const MAX_CREDIBILITY = 10000; // Define this based on your system
 
-  return normalize(rawCredibility, MAX_CREDIBILITY);
+  return normalize(rawCredibility, MAX_CREDIBILITY)*100;
 }

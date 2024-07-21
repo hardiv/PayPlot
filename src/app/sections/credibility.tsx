@@ -16,8 +16,14 @@ export default function Credibility({
   const [upvotes, setUpvotes] = useState(0);
   const [downvotes, setDownvotes] = useState(0);
   const [credibility, setCredibility] = useState(0);
+  const [updated, setUpdated] = useState(false);
 
   function updateVotes() {
+    if (updated || !entered) {
+      return
+    } else {
+      setUpdated(true)
+    }
     getWalletInfo(walletID).then((info) => {
       if (info) {
         setUpvotes(info.upvotes);
@@ -33,6 +39,7 @@ export default function Credibility({
     setVoted(true);
     upvoteWallet(walletID);
     console.log(`Upvoted wallet ID: ${walletID}`);
+    setUpdated(false);
     updateVotes();
   };
 
@@ -40,6 +47,7 @@ export default function Credibility({
     setVoted(true);
     downvoteWallet(walletID);
     console.log(`Downvoted wallet ID: ${walletID}`);
+    setUpdated(false);
     updateVotes();
   };
 
@@ -52,8 +60,8 @@ export default function Credibility({
         {entered && valid ? (
           <>
             <p className="mt-10">Wallet ID: {walletID}</p>
-            <p className="mt-10 text-3xl">
-              Credibility Score: {credibility}
+            <p className="mt-10 text-3xl text-[#FF0000]">
+              Credibility Score: {credibility}%
             </p>
             <p className="mt-10">Upvotes: {upvotes}</p>
             <p className="mt-10">Downvotes: {downvotes}</p>
