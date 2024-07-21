@@ -9,9 +9,8 @@ import Credibility from "./sections/credibility";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const [walletID, setWalletID] = useState(""); // State for wallet ID
   
-  
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -37,8 +36,8 @@ export default function Home() {
         <div className="min-h-screen w-full">
           <NavBar scrolled={scrolled} />
           <div className="flex-grow mt-navbar">
-            <Search/>
-            <Credibility/>
+            <Search setWalletID={setWalletID} />  {/* Pass setWalletID to Search */}
+            <Credibility walletID={walletID} />  {/* Pass walletID to Credibility */}
           </div>
         </div>
       </body>

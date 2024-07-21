@@ -3,7 +3,11 @@ import Info from "@components/info";
 import Graph from "@components/graph";
 import { fetchWalletData, WalletData } from "@/backend/walletHistorySubscan";
 
-export default function Search() {
+interface SearchProps {
+  setWalletID: (walletID: string) => void;
+}
+
+export default function Search({ setWalletID }: SearchProps) {
   const [wallet, setWallet] = useState("0");
   const [inputValue, setInputValue] = useState("");
   const [submittedValue, setSubmittedValue] = useState("");
@@ -25,6 +29,7 @@ export default function Search() {
     setEntered(true);
     setValid(inputValue === "valid"); // Replace this with your actual validation logic
     setWallet(inputValue);
+    setWalletID(inputValue); // Update wallet ID in Home component
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
