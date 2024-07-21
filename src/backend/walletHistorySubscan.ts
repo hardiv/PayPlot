@@ -12,7 +12,7 @@ interface Transaction {
   date: string;
 }
 
-interface WalletData {
+export interface WalletData {
   transactions: Transaction[];
   totalInflow: number;
   totalOutflow: number;
