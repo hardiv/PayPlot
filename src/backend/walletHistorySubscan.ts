@@ -4,7 +4,7 @@ const SUBSCAN_BALANCE_HISTORY_API_URL = 'https://moonbeam.api.subscan.io/api/sca
 const SUBSCAN_TRANSFERS_API_URL = 'https://moonbeam.api.subscan.io/api/v2/scan/transfers';
 const SUBSCAN_API_KEY = '503a383101ad4ae2937cbe6432a0582b'; 
 
-interface Transaction {
+export interface Transaction {
   transactionId: string;
   fromAddress: string;
   toAddress: string | undefined;
