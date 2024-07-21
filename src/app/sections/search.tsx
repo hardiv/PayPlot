@@ -84,7 +84,7 @@ export default function Search() {
           >
             {isCollapsed ? "Show Details" : "Hide Details"}
           </button>
-          <div className="flex w-full mt-2 h-full">
+          <div className="flex w-full h-full mt-2">
             <div
               className={`transition-all duration-300 ease-in-out ${
                 isCollapsed ? "w-0 overflow-hidden" : "w-1/2 pl-5"
@@ -98,9 +98,9 @@ export default function Search() {
               )}
             </div>
             <div
-              className={`flex-1 bg-background transition-all duration-300 ease-in-out ${
+              className={`flex-1 bg-background transition-all duration-300 ease-in-out h-full ${
                 isCollapsed ? "w-full" : "w-1/2"
-              } h-full`}
+              }`}
             >
               <Graph walletID={wallet} walletData={walletDataDummy}/>
             </div>
