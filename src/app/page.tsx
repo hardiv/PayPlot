@@ -50,7 +50,9 @@ export default function Home() {
           <div className="flex-grow mt-navbar">
             <Search/>
             <section className="flex flex-col items-center justify-center w-full h-huscle-screen bg-background">
-              <h1 className="text-5xl text-white items-center justify-center">Made by Hardiv & Ansh</h1>
+              <p className="text-3xl text-white items-center justify-center">What do you think of this wallet? (ID: TODO put ID here)</p>
+              <p>Reliable</p>
+              <p>not relaible</p>
             </section>
           </div>
         </div>
