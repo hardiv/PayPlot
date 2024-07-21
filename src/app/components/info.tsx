@@ -1,6 +1,6 @@
 import React from "react";
 import TransactionWidget from "@components/transactionWidget";
-import { WalletData } from "@/backend/moralis/walletHistoryMoralis";
+import { WalletData } from "@/backend/walletHistorySubscan";
 
 interface InfoProps {
   walletID: string;

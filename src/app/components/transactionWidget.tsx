@@ -1,5 +1,5 @@
 import React from "react";
-import { Transaction } from "@/backend/moralis/walletHistory";
+import { Transaction } from "@/backend/walletHistorySubscan";
 
 interface TransactionProps {
   key: number,
