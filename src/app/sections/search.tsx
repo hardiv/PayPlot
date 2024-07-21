@@ -98,7 +98,7 @@ export default function Search() {
               )}
             </div>
             <div
-              className={`flex-1 bg-background p-4 transition-all duration-300 ease-in-out ${
+              className={`flex-1 bg-background transition-all duration-300 ease-in-out ${
                 isCollapsed ? "w-full" : "w-1/2"
               } h-full`}
             >
