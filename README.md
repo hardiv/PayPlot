@@ -1,6 +1,6 @@
 # Cross-Chain Transaction Visualization and Analysis
 
-Welcome to the PayPlot. This platform is designed to track and visualize blockchain transactions across multiple networks, enhancing transparency and preventing scams through innovative blockchain technology - and we lets users contribute easily!
+Welcome to the PayPlot. This platform is designed to track and visualize blockchain transactions across multiple networks, enhancing transparency and preventing scams through innovative blockchain technology - with features for users to contribute easily!
 
 ## Overview
 
