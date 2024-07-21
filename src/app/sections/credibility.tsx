@@ -19,9 +19,9 @@ export default function Credibility({ walletID }: CredibilityProps) {
         <h1 className="text-4xl text-white mt-10 font-bakbak">
           Credibility Information
         </h1>
-        <p className="mt-10">Wallet ID: {walletID} (Poor)</p> 
+        <p className="mt-10">Wallet ID: {walletID}</p> 
         {/* Poor | Satisfactory  */}
-        <p className="mt-10 text-3xl">Credibility Score: {walletID}</p>
+        <p className="mt-10 text-3xl">Credibility Score: {walletID} (Poor)</p>
         <p className="mt-10">Upvotes: {walletID}</p>
         <p className="mt-10">Downvotes: {walletID}</p>
         <div className="mt-10 flex space-x-4">
