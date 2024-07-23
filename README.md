@@ -2,7 +2,7 @@
 
 Welcome to PayPlot. This platform is designed to track and visualize blockchain transactions across multiple networks, enhancing transparency and preventing scams through innovative blockchain technology - with features for users to contribute easily!
 
-https://github.com/hardiv/PayPlot/demo.mp4
+https://github.com/hardiv/PayPlot/blob/main/demo.mp4
 
 ## Overview
 
