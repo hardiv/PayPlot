@@ -1,7 +1,6 @@
 import { ethers } from 'ethers';
 import { fetchWalletData } from '@/backend/walletHistorySubscan';
 
-// Replace with your contract's ABI and address
 const contractABI = [
   {
     "anonymous": false,
@@ -149,7 +148,6 @@ export async function init() {
           } else {
             // Handle other errors
             console.error('Error requesting accounts:', error);
-            alert('An error occurred while requesting accounts. Please check the console for details.');
           }
           isRequestPending = false;
           return; // Exit early if there's an error
@@ -159,16 +157,17 @@ export async function init() {
       }
 
       // Get the signer and create the contract instance
-      const signer = provider.getSigner();
+      const signer = await provider.getSigner();
       contract = new ethers.Contract(contractAddress, contractABI, signer);
 
       console.log('MetaMask connected and contract instance created.');
+      console.log("console.loging contract: ", contract)
+      console.log('Contract Methods:', contract.upvoteWallet);
     } else {
       console.error('MetaMask is not installed');
     }
   } catch (error) {
     console.error('Error initializing MetaMask or contract:', error);
-    alert('An error occurred. Please check the console for details.');
   }
 }
 
@@ -176,14 +175,16 @@ export async function init() {
 // Function to call `upvoteWallet`
 export async function upvoteWallet(userAddress) {
   if (!contract) {
-    print("Calling init")
+    console.log("Calling init")
     await init();
-    print("Init finished")
+    console.log("Init finished")
   }
   try {
-    print("Calling contract upvote")
+    console.log("console.loging contract in upvoteF: ", contract)
+    console.log('Contract Methods in upvoteF:', contract.upvoteWallet);
+    console.log("Calling contract upvote")
     const tx = await contract.upvoteWallet(userAddress);
-    print("Called upvote, now waiting for tx to be mined")
+    console.log("Called upvote, now waiting for tx to be mined")
     await tx.wait(); // Wait for transaction to be mined
     console.log('Upvote transaction successful');
   } catch (error) {
@@ -212,10 +213,12 @@ export async function getWalletInfo(userAddress) {
   }
   try {
     const info = await contract.getWalletInfo(userAddress);
+    console.log("YO THE GETWALLETINFO WORKED!")
+    console.log(info)
     return {
-      upvotes: info[0].toNumber(), // Assuming info[0] is the upvotes
-      downvotes: info[1].toNumber(), // Assuming info[1] is the downvotes
-      credibility: await getCredibility(info[0].toNumber(), info[1].toNumber(), userAddress)
+      upvotes: Number(info[0]), // Assuming info[0] is the upvotes
+      downvotes: Number(info[1]), // Assuming info[1] is the downvotes
+      credibility: await getCredibility(Number(info[0]), Number(info[1]), userAddress)
     };
   } catch (error) {
     console.error('Error getting wallet info:', error);
@@ -237,5 +240,5 @@ export async function getCredibility(upvotes, downvotes, userAddress) {
   // Assuming a maximum credibility score for normalization
   const MAX_CREDIBILITY = 10000; // Define this based on your system
 
-  return normalize(rawCredibility, MAX_CREDIBILITY);
+  return normalize(rawCredibility, MAX_CREDIBILITY)*100;
 }
