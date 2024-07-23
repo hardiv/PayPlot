@@ -66,7 +66,7 @@ export default function Search({ setWalletID, setEntered, setValid, entered, val
   }, [valid]); // Dependency array: fetch data when wallet or valid changes
 
   return (
-    <section className="flex flex-col items-center w-full h-payplot-screen bg-background">
+    <section className="flex flex-col items-center w-full h-payplot-screen bg-background overflow-hidden">
       <div className="flex w-full flex-col items-center flex-[2]">
         <h1 className="text-4xl text-white mt-10 font-bakbak">
           Visualise transactions in{" "}
@@ -103,7 +103,7 @@ export default function Search({ setWalletID, setEntered, setValid, entered, val
                   <div
                     className={`transition-all duration-300 ease-in-out h-full ${
                       isCollapsed ? "w-0 overflow-hidden" : "w-1/2 pl-5"
-                    } bg-background`}
+                    } bg-background overflow-scroll`}
                   >
                     {!isCollapsed && walletData && (
                       <Info walletID={wallet} walletData={walletData} />
