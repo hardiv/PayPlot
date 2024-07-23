@@ -2,6 +2,11 @@
 
 Welcome to PayPlot. This platform is designed to track and visualize blockchain transactions across multiple networks, enhancing transparency and preventing scams through innovative blockchain technology - with features for users to contribute easily!
 
+<video width="100%" controls>
+  <source src="demo.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Overview
 
 This project leverages the Polkadot network, Moonbeam parachain, and Solidity smart contracts to build a unified system for monitoring and visualizing transactions across different blockchains. By integrating these technologies, we aim to create a seamless experience for users to track transactions, identify potential scams, and visualize data effectively.
